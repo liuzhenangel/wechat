@@ -5,6 +5,10 @@ Rails.application.routes.draw do
 
   # writer your routes here
 
+  get '/auth/:provider/callback' => 'sessions#create'
+  get '/signout' => 'sessions#destroy', :as => :signout
+  get '/auth/failure' => 'sessions#failure'
+
   mount Sidekiq::Web => '/sidekiq'
   mount StatusPage::Engine => '/'
   #mount ActionCable.server => '/cable'
