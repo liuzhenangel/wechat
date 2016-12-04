@@ -9,6 +9,12 @@ Rails.application.routes.draw do
   get '/signout' => 'sessions#destroy', :as => :signout
   get '/auth/failure' => 'sessions#failure'
 
+  if ENV['USER_TEST_DEBUG'].present?
+    get '/test' => 'visitors#test'
+    get '/test_for_new_user' => 'visitors#test_for_new_user'
+    get '/test_for/:id' => 'visitors#test_for'
+  end
+
   mount Sidekiq::Web => '/sidekiq'
   mount StatusPage::Engine => '/'
   #mount ActionCable.server => '/cable'
