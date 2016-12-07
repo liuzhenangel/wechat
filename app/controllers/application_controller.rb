@@ -65,6 +65,7 @@ class ApplicationController < ActionController::Base
     session[:user_id] = nil
     cookies.signed[:user_id] = nil
   end
+
   def wechat?
     browser.wechat?
   end

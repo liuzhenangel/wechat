@@ -2,35 +2,10 @@ h1 用户测试页面
 
 - if ! current_user.present?
   .alert.alert-warning 未登录
-  table.table.table-hover.table-responsive
-    thead
-      tr
-        th ID
-        th 用户名
-        th UID
-        th wechatID
-        th open_wechatID
-        th 角色
-        th 操作
-    tbody
-      - @users.each do |user|
-        tr
-          td #{user.id}
-          td #{user.name}
-          td #{user.uid}
-          td #{user.wechat_openid}
-          td #{user.open_wechat_openid}
-          td #{user.role}
-          td.operations
-            = link_to "登录", "/test_for/#{user.id}"
-  .alert.alert-warning 想创建新的测试用户? 请用新手机扫码
-  .text-center
-    #qrcode-image data-url=root_url+'test_for_new_user'
+  = link_to '测试登录', '/test_for_new_user'
   hr
-
 - else
   h3 登录信息
   ul
     li 用户名: #{current_user.name}
-    li 用户角色: #{current_user.role}
     li = link_to 'Logout', signout_path

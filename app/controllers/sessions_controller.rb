@@ -28,15 +28,8 @@ class SessionsController < ApplicationController
         user.wechat_openid = auth.uid
         user.save(validate: false)
       end
-      redirect_back_or_default(root_path)
-    elsif auth.provider == 'open_wechat'
-      if user.open_wechat_openid.blank?
-        user.open_wechat_openid = auth.uid
-        user.role = :writer if user.role.to_sym == :reader
-        user.save(validate: false)
-      end
-      redirect_to writer_root_path
     end
+    redirect_to root_path
   end
 
   def destroy
